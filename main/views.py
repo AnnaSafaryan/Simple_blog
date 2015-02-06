@@ -53,6 +53,9 @@ class SinglePost(View):
 
 class EditPost(View):
     def get(self, request, id):
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect('/posts/{}/'.format(id))
+
         post = Post.objects.get(id=id)
         return HttpResponse(render(request, 'edit_post.html', {'post': post}))
 
