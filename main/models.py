@@ -10,3 +10,12 @@ class Post(models.Model):
 
     def __unicode__(self):
         return u'{} at {}'.format(self.header, self.when)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('Post')
+    text = models.TextField(u'Comment text')
+    when = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return u'Comment to "{}"'.format(self.post.header)
