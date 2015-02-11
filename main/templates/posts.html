@@ -3,9 +3,19 @@
     <section class="container">
         <div class="jumbotron">
         {% for post in posts %}
-            <a href="/posts/{{ post.id }}/"><h1>{{ post.header }}</h1></a>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/posts/{{ post.id }}/"><h1>{{ post.header }}</h1></a>
+                </div>
+            </div>
+
             <h5>{{ post.when }}</h5>
             <p>{{ post.text|safe }}</p>
+            <div class="row">
+                <div class="md-col-2 text-right">
+                    <a href="/posts/{{ post.id }}/"><i>{{ post.number_of_comments }} comments</i></a>
+                </div>
+            </div>
         {% endfor %}
         </div>
     </section>

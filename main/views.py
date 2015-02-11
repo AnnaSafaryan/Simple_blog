@@ -78,3 +78,8 @@ class AddComment(View):
         post = Post.objects.get(id=id)
         Comment.objects.create(text=comment, post=post)
         return HttpResponseRedirect('/posts/{}/'.format(id))
+
+
+class About(View):
+    def get(self, request):
+        return HttpResponse(render(request, 'about.html', {}))

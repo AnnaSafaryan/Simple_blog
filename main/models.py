@@ -11,6 +11,9 @@ class Post(models.Model):
     def __unicode__(self):
         return u'{} at {}'.format(self.header, self.when)
 
+    def number_of_comments(self):
+        return self.comment_set.all().count()
+
 
 class Comment(models.Model):
     post = models.ForeignKey('Post')
