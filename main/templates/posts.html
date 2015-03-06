@@ -6,7 +6,7 @@
         {% for post in posts %}
             <a href="/posts/{{ post.id }}/"><h2>{{ post.header }}</h2></a>
             <h5>{{ post.when }}</h5>
-            <p>{{ post.text|safe }}</p>
+            <p>{{ post.short_text|safe }}</p>
             <h5>{{ post.comment_set.count }} Comments</h5>
         {% endfor %}
         </div>

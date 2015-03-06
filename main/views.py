@@ -48,7 +48,7 @@ class AddPost(View):
 class SinglePost(View):
     def get(self, request, id):
         post = Post.objects.get(id=id)
-        comments = Comment.objects.all().filter(post=post)
+        comments = Comment.objects.all().filter(post=post).order_by('when')
         return HttpResponse(render(request, 'single_post.html', {'post': post, 'comments': comments}))
 
 
@@ -74,5 +74,6 @@ class AddComment(View):
         post = Post.objects.get(id=id)
         header = request.POST['header']
         text = request.POST['text']
-        Comment.objects.create(post=post, header=header, text=text)
+        user = request.user
+        Comment.objects.create(post=post, header=header, text=text, who=user)
         return HttpResponseRedirect('/posts/{}/'.format(id))

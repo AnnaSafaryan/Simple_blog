@@ -14,7 +14,10 @@
             {% if comments %}
                 <ul>
                 {% for comment in comments %}
-                    <li> <h5>{{ comment.when }}</h5>
+
+                    <li>
+                         <p><i></i> {% if not comment.who %}Anonimous{% else %}{{ comment.who.username }}{% endif %} said:</i></p>
+                        <h5>{{ comment.when }}</h5>
                         <p><font size="4">{{ comment.text|safe }}</font></p></li>
                 {% endfor %}
                 </ul>
